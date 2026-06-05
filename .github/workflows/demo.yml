@@ -1,14 +1,21 @@
-name: Hello World
+name: Testing Workflow Variables
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch
+
+env:
+  cloud: google-cloud
 
 jobs:
-  hello:
+  greeting_job:
     runs-on: ubuntu-latest
 
+    env:
+      Greeting: Hello
+
     steps:
-      - name: Say Hello
-        run: echo "Hello, World! & How are you"
+      - name: "Say Hello Mona it's Monday"
+        run: echo "$Greeting ${{ env.First_Name }} using $cloud"
+
+        env:
+          First_Name: Vishal
